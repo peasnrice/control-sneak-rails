@@ -27,7 +27,7 @@ class GameroomsController < ApplicationController
   # POST /gamerooms.json
   def create
     @gameroom = Gameroom.new(gameroom_params)
-
+    @gameroom.user_id = current_user.id if current_user
     respond_to do |format|
       if @gameroom.save
         format.html { redirect_to @gameroom, notice: 'Gameroom was successfully created.' }
