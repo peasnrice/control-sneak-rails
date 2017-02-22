@@ -5,8 +5,19 @@ $color3: rgba(219, 48, 21, 1);
 $color4: rgba(188, 5, 5, 1);
 $color5: rgba(23, 183, 208, 1);
 
+
+
 #navbar {
-  background-color: $color1;
+  img{
+    max-width:40px;
+    margin: 10px 0 10px 10px;
+  }
+  #logo-link{
+    float:left;
+  }
+  a:hover{
+    background-color:#222;
+  }
 }
 
 body {

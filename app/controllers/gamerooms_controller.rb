@@ -1,4 +1,6 @@
 class GameroomsController < ApplicationController
+  before_filter :authenticate_user!
+  
   before_action :set_gameroom, only: [:show, :edit, :update, :destroy]
 
   # GET /gamerooms
