@@ -3,6 +3,19 @@ class GameroomsController < ApplicationController
   
   before_action :set_gameroom, only: [:show, :edit, :update, :destroy]
 
+  def join
+    @gameroom = Gameroom.find(params[:id])
+    if @gameroom.users.where(:id => current_user.id).blank?
+      @gameroom.users << current_user 
+    end
+    if @gameroom.save
+      redirect_to @gameroom
+    else
+      format.html { redirect_to gamerooms_path, notice: 'something went wrong.' }
+    end
+    
+  end
+
   # GET /gamerooms
   # GET /gamerooms.json
   def index

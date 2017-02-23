@@ -1,29 +1,16 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Gamerooms</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @gamerooms.each do |gameroom| %>
-      <tr>
-        <td><%= gameroom.title %></td>
-        <td><%= gameroom.host_id %></td>
-        <td><%= link_to 'Show', gameroom %></td>
-        <td><%= link_to 'Edit', edit_gameroom_path(gameroom) %></td>
-        <td><%= link_to 'Destroy', gameroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Gameroom', new_gameroom_path %>
+<h2><%= link_to 'Create Gameroom', new_gameroom_path %></h2>
+<div class="container">
+  <div class="row"> 
+  <% @gamerooms.each do |gameroom, index| %>
+    <div class="col-md-3 col-sm-6 col-xs-12">
+      <div class="gameroom-tile">
+      <h1><%= gameroom.title %></h1>
+      <p><%= link_to 'Join', join_gameroom_path(gameroom), method: :join %></p>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>

@@ -4,7 +4,8 @@ $color2: rgba(244, 94, 29, 1);
 $color3: rgba(219, 48, 21, 1);
 $color4: rgba(188, 5, 5, 1);
 $color5: rgba(23, 183, 208, 1);
-
+$pamplemouse:#FFBB66;
+$antipample:#66aaff;
 
 
 #navbar {
@@ -22,6 +23,7 @@ $color5: rgba(23, 183, 208, 1);
 
 body {
   padding-top: 80px;
+  background:$antipample;
 }
 
 section {
@@ -38,4 +40,19 @@ textarea {
 
 .center h1 {
   margin-bottom: 10px;
+}
+
+.gameroom-tile{
+  background-color:$pamplemouse;
+  border:solid 5px #ffa266;
+  padding:15px;
+  border-radius:5px;
+  transition:.5s;
+  margin-bottom:15px;
+  cursor:pointer;
+  &:hover{
+    background-color:$antipample;
+    border-color:#66c3ff;
+   
+  }
 }
