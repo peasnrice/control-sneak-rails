@@ -26,9 +26,9 @@ class GameroomsController < ApplicationController
   # POST /gamerooms
   # POST /gamerooms.json
   def create
-    @gameroom = Gameroom.new(gameroom_params)
-    @gameroom.user_id = current_user.id if current_user
     respond_to do |format|
+      @gameroom = Gameroom.new(gameroom_params)
+      @gameroom.host_id = current_user.id if current_user
       if @gameroom.save
         format.html { redirect_to @gameroom, notice: 'Gameroom was successfully created.' }
         format.json { render :show, status: :created, location: @gameroom }
@@ -71,6 +71,6 @@ class GameroomsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def gameroom_params
-      params.require(:gameroom).permit(:title, :user_id)
+      params.require(:gameroom).permit(:title, :host_id)
     end
 end

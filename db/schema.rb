@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170222023410) do
+ActiveRecord::Schema.define(version: 20170223015107) do
+
+  create_table "gameroom_user_associations", force: :cascade do |t|
+    t.integer "gameroom_id"
+    t.integer "user_id"
+    t.index ["gameroom_id"], name: "index_gameroom_user_associations_on_gameroom_id"
+    t.index ["user_id"], name: "index_gameroom_user_associations_on_user_id"
+  end
 
   create_table "gamerooms", force: :cascade do |t|
     t.string   "title"
-    t.integer  "user_id"
+    t.integer  "host_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.datetime "time_end"
+    t.string   "password"
   end
 
   create_table "users", force: :cascade do |t|

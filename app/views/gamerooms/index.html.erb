@@ -15,7 +15,7 @@
     <% @gamerooms.each do |gameroom| %>
       <tr>
         <td><%= gameroom.title %></td>
-        <td><%= gameroom.user_id %></td>
+        <td><%= gameroom.host_id %></td>
         <td><%= link_to 'Show', gameroom %></td>
         <td><%= link_to 'Edit', edit_gameroom_path(gameroom) %></td>
         <td><%= link_to 'Destroy', gameroom, method: :delete, data: { confirm: 'Are you sure?' } %></td>
