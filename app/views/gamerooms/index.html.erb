@@ -4,13 +4,15 @@
 <h2><%= link_to 'Create Gameroom', new_gameroom_path %></h2>
 <div class="container">
   <div class="row"> 
-  <% @gamerooms.each do |gameroom, index| %>
+  <% @gamerooms.reverse.each do |gameroom, index| %>
+    <%= link_to join_gameroom_path(gameroom), method: :join do %>
     <div class="col-md-3 col-sm-6 col-xs-12">
       <div class="gameroom-tile">
-      <h1><%= gameroom.title %></h1>
-      <p><%= link_to 'Join', join_gameroom_path(gameroom), method: :join %></p>
+      <h2><%= gameroom.title %></h2>
+      <p></p>
       </div>
     </div>
+    <% end %>
   <% end %>
   </div>
 </div>
