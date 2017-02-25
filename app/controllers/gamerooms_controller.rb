@@ -13,7 +13,6 @@ class GameroomsController < ApplicationController
     else
       format.html { redirect_to gamerooms_path, notice: 'something went wrong.' }
     end
-    
   end
 
   # GET /gamerooms

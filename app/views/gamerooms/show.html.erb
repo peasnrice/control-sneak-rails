@@ -6,6 +6,12 @@
 </p>
 
 <p>
+  <% @gameroom.users.each do |user| %>
+    <%= user.username %>
+    <%= link_to 'Create Phrase', new_gameroom_gameword_path(@gameroom, :recipient_id => user.id) %>
+  <% end %>
+</p>
+<p>
   <strong>User:</strong>
   <%= @gameroom.host_id %>
 </p>

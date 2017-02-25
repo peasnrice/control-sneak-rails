@@ -1,0 +1,8 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Phrase:</strong>
+  <%= @gameword.phrase %>
+</p>
+
+<%= link_to 'Back', gameroom_path(:id => @gameword.gameroom_id) %>

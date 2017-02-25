@@ -1,0 +1,1 @@
+json.extract! @gameroom, :id, :sender_id, :recipient_id, :phrase, :open, :updated_at
