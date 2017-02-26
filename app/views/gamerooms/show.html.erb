@@ -4,13 +4,17 @@
   <strong>Title:</strong>
   <%= @gameroom.title %>
 </p>
+<p>
+  <%= link_to 'Create Phrase', new_gameroom_gameword_path(@gameroom) %>
+</p>
 
+<h2>Player List</h2>
 <p>
   <% @gameroom.users.each do |user| %>
-    <%= user.username %>
-    <%= link_to 'Create Phrase', new_gameroom_gameword_path(@gameroom, :recipient_id => user.id) %>
+    <%= user.username %> </br>
   <% end %>
 </p>
+
 <p>
   <strong>User:</strong>
   <%= @gameroom.host_id %>

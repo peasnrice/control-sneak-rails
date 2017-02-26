@@ -11,6 +11,15 @@
   <% end %>
 
   <div class="field">
+    <% @gameroom.users.each do |user| %>
+      <% unless user.id == current_user.id %>
+        <%= f.radio_button :recipient_id, user.id %>
+        <%= f.label user.id, user.username %></br>
+      <% end %>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :phrase %>
     <%= f.text_field :phrase %>
   </div>
