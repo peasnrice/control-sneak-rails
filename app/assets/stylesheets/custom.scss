@@ -91,3 +91,15 @@ textarea {
     }
   }
 }
+
+.gameroom-section{
+  text-align:center;
+  background-color:$pamplemouse;
+  border:solid 5px $darkpample;
+  padding:15px;
+  border-radius:5px;
+  margin-bottom:15px;
+  h2{
+    padding:0;
+  }
+}

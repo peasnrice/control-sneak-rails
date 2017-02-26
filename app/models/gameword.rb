@@ -6,4 +6,5 @@ class Gameword < ApplicationRecord
     has_many :favourites, :class_name => 'user'
     validates :phrase, length: { maximum: 140 },
                                 presence: true
+    enum status: [:accepted, :rejected, :failed]
 end

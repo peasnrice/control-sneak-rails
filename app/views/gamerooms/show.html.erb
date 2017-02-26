@@ -14,9 +14,41 @@
 </div>
 
 
-<h2>Player List</h2>
-<p>
-  <% @gameroom.users.each do |user| %>
-    <%= user.username %> </br>
-  <% end %>
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <div class="gameroom-section">
+        <h2>Your Inbox</h2>
+        <p>
+          <% if @open_count == 0 %>
+            You have no new phrases, want to send out a beacon for more?
+          <% else %>
+            <% @gamewords.each do |gameword| %>
+              <% unless gameword.open %>
+                <%= gameword.phrase %> </br>
+              <% end %>
+            <% end %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <div class="gameroom-section">
+        <h2>Player List</h2>
+        <p>
+          <% @gameroom.users.each do |user| %>
+            <%= user.username %> </br>
+          <% end %>
+        </p>
+      </div> 
+    </div>
+    <div class="col-md-4 col-sm-12 col-xs-12">
+      <div class="gameroom-section">
+        <h2>Recently Sneaked</h2>
+        <p>
+            recently played sneaks go here
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

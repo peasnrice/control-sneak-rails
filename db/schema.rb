@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226043516) do
+ActiveRecord::Schema.define(version: 20170226153409) do
 
   create_table "gameroom_user_associations", force: :cascade do |t|
     t.integer "gameroom_id"
@@ -36,6 +36,7 @@ ActiveRecord::Schema.define(version: 20170226043516) do
     t.integer  "recipient_id"
     t.integer  "sender_id"
     t.integer  "gameroom_id"
+    t.integer  "status"
   end
 
   create_table "users", force: :cascade do |t|
