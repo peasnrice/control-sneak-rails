@@ -23,18 +23,33 @@
           <% if @opened_count == 0 %>
             You have no new phrases, want to send out a beacon for more?
           <% else %>
-            <% @gamewords.each do |gameword| %>
-              <%= gameword.phrase %> </br>
-              <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "accepted"), class:"like-btn", method: :put, remote: true do %> 
-                <button class="btn btn-warning">I Succeeded</button> 
-              <% end %> 
-              <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "failed"), class:"like-btn", method: :put, remote: true do %> 
-                <button class="btn btn-warning">I Failed</button> 
-              <% end %> 
-              <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "rejected"), class:"like-btn", method: :put, remote: true do %> 
-                <button class="btn btn-warning">Reject, this iz impossible</button> 
-              <% end %> 
-            <% end %>
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+              <% @gamewords.each_with_index do |gameword, index| %>
+              <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id=<%="heading#{index}" %>>
+                  <h4 class="panel-title">
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href=#<%="collapse#{index}"%> aria-expanded="true" aria-controls=<%="collapse#{index}"%>>
+                      <%= gameword.phrase %>
+                    </a>
+                  </h4>
+                </div>
+                <div id=<%="collapse#{index}"%> class="panel-collapse collapse in" role="tabpanel" aria-labelledby=<%="heading#{index}"%>>
+                  <div class="panel-body">
+                    <%= gameword.phrase %> </br>
+                    <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "accepted"), class:"like-btn", method: :put, remote: true do %> 
+                      <button class="btn btn-warning">I Did This</button> 
+                    <% end %> 
+                    <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "failed"), class:"like-btn", method: :put, remote: true do %> 
+                      <button class="btn btn-warning">I Failed This</button> 
+                    <% end %> 
+                    <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "rejected"), class:"like-btn", method: :put, remote: true do %> 
+                      <button class="btn btn-warning">This iz Rediculous</button> 
+                    <% end %> 
+                  </div>
+                </div>
+              </div>
+              <% end %>
+            </div>
           <% end %>
         </p>
       </div>
