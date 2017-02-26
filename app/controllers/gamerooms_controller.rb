@@ -41,6 +41,7 @@ class GameroomsController < ApplicationController
     respond_to do |format|
       @gameroom = Gameroom.new(gameroom_params)
       @gameroom.host_id = current_user.id if current_user
+      @gameroom.users << current_user 
       if @gameroom.save
         format.html { redirect_to @gameroom, notice: 'Gameroom was successfully created.' }
         format.json { render :show, status: :created, location: @gameroom }

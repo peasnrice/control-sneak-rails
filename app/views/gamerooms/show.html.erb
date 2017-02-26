@@ -1,12 +1,18 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @gameroom.title %>
-</p>
-<p>
-  <%= link_to 'Create Phrase', new_gameroom_gameword_path(@gameroom) %>
-</p>
+<div class="container custom-title center">
+  <div class="row">
+    <h2>Welcome to... <%= @gameroom.title %></h2>
+    <p>
+      <% if @gameroom.users.count == 1 %>
+        Get some friends you big pample! you can't play this game alone unfortunately...
+      <% else %>
+        <%= link_to 'Create Phrase', new_gameroom_gameword_path(@gameroom), class: "btn btn-lg btn-primary" %>
+      <% end %>
+    </p>
+  </div>
+</div>
+
 
 <h2>Player List</h2>
 <p>
@@ -14,11 +20,3 @@
     <%= user.username %> </br>
   <% end %>
 </p>
-
-<p>
-  <strong>User:</strong>
-  <%= @gameroom.host_id %>
-</p>
-
-<%= link_to 'Edit', edit_gameroom_path(@gameroom) %> |
-<%= link_to 'Back', gamerooms_path %>

@@ -45,7 +45,6 @@ textarea {
   border:solid 5px $darkpample;
   padding:15px;
   border-radius:5px;
-  transition:.5s;
   margin-bottom:15px;
   cursor:pointer;
   &:hover{
@@ -72,3 +71,23 @@ textarea {
   }
 }
 
+.gameroom-filters{
+  display: inline-block;
+  padding: 0 0 10px 0;
+  .filter-option{
+    display:inline;
+    padding: 0 10px;
+  }
+}
+
+.custom-title{
+  padding: 0 0 20px 0;
+  .btn-primary{
+    background-color:$antipample;
+    border:solid 5px $lightantipample;
+    &:hover{
+    background-color:$lightantipample;
+    border-color:$antipample;
+    }
+  }
+}

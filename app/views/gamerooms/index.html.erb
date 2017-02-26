@@ -1,7 +1,24 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Gamerooms</h1>
-<h2><%= link_to 'Create Gameroom', new_gameroom_path %></h2>
+<div class="container">
+  <div class="row custom-title center">
+    <h1>Game Rooms</h1>
+    <%= link_to 'Create Gameroom', new_gameroom_path, class: "btn btn-lg btn-primary" %>
+  </div>
+</div>
+<%#
+<h2>Filter</h2>
+<div class="gameroom-filters">
+  <button type="button" class="btn btn-primary filter-option">Reset</button>
+  <div class="checkbox filter-option">
+    <label><input type="checkbox" value="">Only My Games</label>
+  </div>
+  <div class="checkbox filter-option">
+    <label><input type="checkbox" value="">Active Games</label>
+  </div>
+</div>
+%>
+
 <div class="container">
   <div class="row"> 
   <% @gamerooms.reverse.each do |gameroom, index| %>
