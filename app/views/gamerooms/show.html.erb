@@ -20,13 +20,20 @@
       <div class="gameroom-section">
         <h2>Your Inbox</h2>
         <p>
-          <% if @open_count == 0 %>
+          <% if @opened_count == 0 %>
             You have no new phrases, want to send out a beacon for more?
           <% else %>
             <% @gamewords.each do |gameword| %>
-              <% unless gameword.open %>
-                <%= gameword.phrase %> </br>
-              <% end %>
+              <%= gameword.phrase %> </br>
+              <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "accepted"), class:"like-btn", method: :put, remote: true do %> 
+                <button class="btn btn-warning">I Succeeded</button> 
+              <% end %> 
+              <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "failed"), class:"like-btn", method: :put, remote: true do %> 
+                <button class="btn btn-warning">I Failed</button> 
+              <% end %> 
+              <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "rejected"), class:"like-btn", method: :put, remote: true do %> 
+                <button class="btn btn-warning">Reject, this iz impossible</button> 
+              <% end %> 
             <% end %>
           <% end %>
         </p>

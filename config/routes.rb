@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/help'
   resources :gamerooms do
-      resources :gamewords, shallow: true
+      resources :gamewords, shallow: true do
+        put "update_status" => "gamewords#update_status"
+      end
   end
 end

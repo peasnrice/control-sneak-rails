@@ -35,6 +35,14 @@ class GamewordsController < ApplicationController
     end
   end
   
+ 	def update_status
+		@gameword = Gameword.find(params[:gameword_id])
+		@gameword.status = params[:status]
+		if @gameword.save
+			puts "saved"   
+		end
+	end
+  
 	# Use callbacks to share common setup or constraints between actions.
 	def set_gameword
 	  @gameword = Gameword.find(params[:id])
