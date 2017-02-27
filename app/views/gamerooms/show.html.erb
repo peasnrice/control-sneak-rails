@@ -21,33 +21,35 @@
         <h2>Your Inbox</h2>
         <p>
           <% if @opened_count == 0 %>
-            You have no new phrases, want to send out a beacon for more?
+            You have no new phrases, want to send out a beacon for more? </br> Add a button that sets a flag on this user that encourages other players to send them sneaks.
           <% else %>
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
               <% @gamewords.each_with_index do |gameword, index| %>
-              <div class="panel panel-default">
-                <div class="panel-heading" role="tab" id=<%="heading#{index}" %>>
-                  <h4 class="panel-title">
-                    <a role="button" data-toggle="collapse" data-parent="#accordion" href=#<%="collapse#{index}"%> aria-expanded="true" aria-controls=<%="collapse#{index}"%>>
-                      <%= gameword.phrase %>
-                    </a>
-                  </h4>
-                </div>
-                <div id=<%="collapse#{index}"%> class="panel-collapse collapse in" role="tabpanel" aria-labelledby=<%="heading#{index}"%>>
-                  <div class="panel-body">
-                    <%= gameword.phrase %> </br>
-                    <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "accepted"), class:"like-btn", method: :put, remote: true do %> 
-                      <button class="btn btn-warning">I Did This</button> 
-                    <% end %> 
-                    <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "failed"), class:"like-btn", method: :put, remote: true do %> 
-                      <button class="btn btn-warning">I Failed This</button> 
-                    <% end %> 
-                    <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "rejected"), class:"like-btn", method: :put, remote: true do %> 
-                      <button class="btn btn-warning">This iz Rediculous</button> 
-                    <% end %> 
+                <% if gameword.status == nil %>
+                  <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id=<%="heading#{index}" %>>
+                      <h4 class="panel-title">
+                        <a role="button" data-toggle="collapse" data-parent="#accordion" href=#<%="collapse#{index}"%> aria-expanded="true" aria-controls=<%="collapse#{index}"%>>
+                          <%= gameword.phrase %>
+                        </a>
+                      </h4>
+                    </div>
+                    <div id=<%="collapse#{index}"%> class="panel-collapse collapse in" role="tabpanel" aria-labelledby=<%="heading#{index}"%>>
+                      <div class="panel-body">
+                        <%= gameword.phrase %> </br>
+                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "accepted"), class:"like-btn", method: :put, remote: true do %> 
+                          <button class="btn btn-warning">I Did This</button> 
+                        <% end %> 
+                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "failed"), class:"like-btn", method: :put, remote: true do %> 
+                          <button class="btn btn-warning">I Failed This</button> 
+                        <% end %> 
+                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "rejected"), class:"like-btn", method: :put, remote: true do %> 
+                          <button class="btn btn-warning">This iz Rediculous</button> 
+                        <% end %> 
+                      </div>
+                    </div>
                   </div>
-                </div>
-              </div>
+                <% end %>
               <% end %>
             </div>
           <% end %>
@@ -67,9 +69,15 @@
     <div class="col-md-4 col-sm-12 col-xs-12">
       <div class="gameroom-section">
         <h2>Recently Sneaked</h2>
-        <p>
-            recently played sneaks go here
-        </p>
+          <% @all_gamewords.each_with_index do |gameword, index| %>
+            <% if gameword.status != nil %>
+              <div id=<%="collapse#{index}"%> class="panel-collapse collapse in" role="tabpanel" aria-labelledby=<%="heading#{index}"%>>
+                <div class="panel-body">
+                  <%= gameword.phrase %> : <%= gameword.status %> </br>
+                </div>
+              </div>
+          <% end %>
+        <% end %>
       </div>
     </div>
   </div>

@@ -26,7 +26,8 @@ class GameroomsController < ApplicationController
   def show
     @gameroom = Gameroom.find(params[:id])
     @gamewords = @gameroom.gamewords.where(:recipient_id => current_user.id)
-    @opened_count = @gamewords.where(:opened => nil).count
+    @all_gamewords = @gameroom.gamewords
+    @opened_count = @gamewords.where(:status => nil).count
   end
 
   # GET /gamerooms/new
