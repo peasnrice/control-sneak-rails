@@ -37,9 +37,58 @@ class GamewordsController < ApplicationController
   
  	def update_status
 		@gameword = Gameword.find(params[:gameword_id])
+		@gameroom = @gameword.gameroom
 		@gameword.status = params[:status]
 		if @gameword.save
-			puts "saved"   
+			respond_to do |format|
+				format.html { redirect_to gameroom_url(:id => @gameroom.id) }
+			end
+		end
+	end
+	
+	def toggle_favourite
+		@gameword = Gameword.find(params[:gameword_id])
+		@gameroom = @gameword.gameroom
+		@gameword_user_association = GamewordUserAssociation.find_or_create_by(user_id: current_user, gameword_id: @gameword)
+		@gameword_user_association.user_id = current_user.id
+		@gameword_user_association.gameword_id = @gameword.id
+		if @gameword_user_association.favourite
+			@gameword_user_association.favourite = false
+		else
+			@gameword_user_association.favourite = true
+		end
+		if @gameword_user_association.save
+			respond_to do |format|
+				format.html { redirect_to gameroom_url(:id => @gameroom.id) }
+			end
+		end
+	end
+	
+	def set_valid
+		@gameword = Gameword.find(params[:gameword_id])
+		@gameroom = @gameword.gameroom
+		@gameword_user_association = GamewordUserAssociation.find_or_create_by(user_id: current_user, gameword_id: @gameword)
+		@gameword_user_association.user_id = current_user.id
+		@gameword_user_association.gameword_id = @gameword.id
+		@gameword_user_association.is_valid = true
+		if @gameword_user_association.save
+			respond_to do |format|
+				format.html { redirect_to gameroom_url(:id => @gameroom.id) }
+			end
+		end
+	end
+		
+	def set_invalid
+		@gameword = Gameword.find(params[:gameword_id])
+		@gameroom = @gameword.gameroom
+		@gameword_user_association = GamewordUserAssociation.find_or_create_by(user_id: current_user, gameword_id: @gameword.id)
+		@gameword_user_association.user_id = current_user.id
+		@gameword_user_association.gameword_id = @gameword.id
+		@gameword_user_association.is_valid = false
+		if @gameword_user_association.save
+			respond_to do |format|
+				format.html { redirect_to gameroom_url(:id => @gameroom.id) }
+			end
 		end
 	end
   

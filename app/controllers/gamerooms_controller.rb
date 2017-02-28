@@ -26,7 +26,7 @@ class GameroomsController < ApplicationController
   def show
     @gameroom = Gameroom.find(params[:id])
     @gamewords = @gameroom.gamewords.where(:recipient_id => current_user.id)
-    @all_gamewords = @gameroom.gamewords
+    @all_gamewords = @gameroom.gamewords.reverse
     @opened_count = @gamewords.where(:status => nil).count
   end
 

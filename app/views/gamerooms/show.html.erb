@@ -37,13 +37,13 @@
                     <div id=<%="collapse#{index}"%> class="panel-collapse collapse in" role="tabpanel" aria-labelledby=<%="heading#{index}"%>>
                       <div class="panel-body">
                         <%= gameword.phrase %> </br>
-                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "accepted"), class:"like-btn", method: :put, remote: true do %> 
+                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "accepted"), id: "update-sneak-status", class:"accepted", method: :put, remote: true do %> 
                           <button class="btn btn-warning">I Did This</button> 
                         <% end %> 
-                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "failed"), class:"like-btn", method: :put, remote: true do %> 
+                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "failed"), id: "update-sneak-status", class:"failed", method: :put, remote: true do %> 
                           <button class="btn btn-warning">I Failed This</button> 
                         <% end %> 
-                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "rejected"), class:"like-btn", method: :put, remote: true do %> 
+                        <%= link_to gameword_update_status_path(:gameword_id => gameword.id, :status => "rejected"), id: "update-sneak-status", class:"rejected", method: :put, remote: true do %> 
                           <button class="btn btn-warning">This iz Rediculous</button> 
                         <% end %> 
                       </div>
@@ -72,9 +72,16 @@
           <% @all_gamewords.each_with_index do |gameword, index| %>
             <% if gameword.status != nil %>
               <div id=<%="collapse#{index}"%> class="panel-collapse collapse in" role="tabpanel" aria-labelledby=<%="heading#{index}"%>>
-                <div class="panel-body">
-                  <%= gameword.phrase %> : <%= gameword.status %> </br>
-                </div>
+                <%= gameword.phrase %> : <%= gameword.status %> </br>
+                <%= link_to gameword_toggle_favourite_path(:gameword_id => gameword.id), id: "favourite#{index}", class:"favourite", method: :put, remote: true do %> 
+                  <button class="btn btn-warning">I like this</button> 
+                <% end %>    
+                <%= link_to gameword_set_valid_path(:gameword_id => gameword.id), id: "accept", class:"accept", method: :put, remote: true do %> 
+                  <button class="btn btn-warning">Yes, this happened</button> 
+                <% end %>  
+                <%= link_to gameword_set_invalid_path(:gameword_id => gameword.id), id: "reject", class:"reject", method: :put, remote: true do %> 
+                  <button class="btn btn-warning">No, this did not happen</button> 
+                <% end %>  
               </div>
           <% end %>
         <% end %>

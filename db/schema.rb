@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170226153409) do
+ActiveRecord::Schema.define(version: 20170228025850) do
 
   create_table "gameroom_user_associations", force: :cascade do |t|
     t.integer "gameroom_id"
@@ -28,11 +28,20 @@ ActiveRecord::Schema.define(version: 20170226153409) do
     t.datetime "time_end"
   end
 
+  create_table "gameword_user_associations", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "gameword_id"
+    t.boolean  "is_valid"
+    t.boolean  "favourite"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
   create_table "gamewords", force: :cascade do |t|
     t.datetime "created_at",   null: false
     t.datetime "updated_at",   null: false
     t.string   "phrase"
-    t.boolean  "open"
+    t.boolean  "opened"
     t.integer  "recipient_id"
     t.integer  "sender_id"
     t.integer  "gameroom_id"
