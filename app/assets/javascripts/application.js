@@ -14,3 +14,16 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+$(document).on('ready page:load', function() {
+    var REFRESH_INTERVAL_IN_MILLIS = 5000;
+     if ($('.f-pending-message').length > 0) {
+       setTimeout(function(){
+        Turbolinks.enableTransitionCache(true);
+
+        Turbolinks.visit(location.toString());
+
+        Turbolinks.enableTransitionCache(false);
+         }, REFRESH_INTERVAL_IN_MILLIS);
+    }
+});

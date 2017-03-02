@@ -7,4 +7,4 @@
 $ ->
   $("#favourite").on "ajax:success", (e, data, status, xhr) ->
     jQuery(this).children("button").css('background-color', 'red');
-    
+
